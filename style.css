@@ -8,91 +8,219 @@
 }
 
 :root {
-    --primary-color: #2196F3;
-    --secondary-color: #4CAF50;
-    --accent-color: #FF9800;
-    --danger-color: #f44336;
-    --dark-bg: #1a237e;
-    --light-bg: #f5f7fa;
-    --card-bg: #ffffff;
-    --text-primary: #212121;
-    --text-secondary: #757575;
-    --border-color: #e0e0e0;
-    --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.15);
+    /* One Piece Color Palette */
+    --straw-hat-yellow: #F4C430;
+    --luffy-red: #DC143C;
+    --ocean-blue: #1E90FF;
+    --ocean-deep: #003F87;
+    --pirate-black: #1a1a1a;
+    --treasure-gold: #FFD700;
+    --wanted-paper: #F5DEB3;
+    --marine-white: #FFFFFF;
+    --sunset-orange: #FF6B35;
+    --text-dark: #2C3E50;
+    --text-light: #ECF0F1;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    --shadow-heavy: 0 8px 30px rgba(0, 0, 0, 0.5);
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #1E90FF 0%, #003F87 50%, #001F3F 100%);
+    background-attachment: fixed;
     min-height: 100vh;
-    color: var(--text-primary);
+    color: var(--text-dark);
     line-height: 1.6;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* One Piece Ocean Wave Animation */
+body::before {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,50 Q150,20 300,50 T600,50 T900,50 T1200,50 L1200,120 L0,120 Z" fill="%23003F87" opacity="0.5"/><path d="M0,70 Q150,90 300,70 T600,70 T900,70 T1200,70 L1200,120 L0,120 Z" fill="%231E90FF" opacity="0.3"/></svg>') repeat-x;
+    animation: wave 15s linear infinite;
+    z-index: 0;
+    pointer-events: none;
+}
+
+@keyframes wave {
+    0% { background-position: 0 0; }
+    100% { background-position: 1200px 0; }
 }
 
 /* ==============================
-   HEADER
+   HEADER - One Piece Style
    ============================== */
 .header {
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    background: linear-gradient(135deg, var(--luffy-red) 0%, var(--sunset-orange) 100%);
     color: white;
-    padding: 2rem 1rem;
+    padding: 2.5rem 1rem;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-heavy);
+    border-bottom: 4px solid var(--treasure-gold);
+    position: relative;
+    overflow: hidden;
 }
 
-.header-content h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    animation: fadeInDown 0.8s ease;
+.header::before {
+    content: '☠';
+    position: absolute;
+    font-size: 15rem;
+    opacity: 0.1;
+    top: -50px;
+    right: 10%;
+    animation: float 6s ease-in-out infinite;
 }
 
-.header-content h1 i {
-    color: var(--accent-color);
-    margin-right: 0.5rem;
+.header::after {
+    content: '⚓';
+    position: absolute;
+    font-size: 10rem;
+    opacity: 0.1;
+    bottom: -30px;
+    left: 5%;
+    animation: float 8s ease-in-out infinite reverse;
 }
 
-.subtitle {
-    font-size: 1.1rem;
-    opacity: 0.9;
-    animation: fadeInUp 0.8s ease;
-}
-
-/* ==============================
-   CONTAINER
-   ============================== */
-.container {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-    animation: fadeIn 1s ease;
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+    position: relative;
+    z-index: 1;
 }
 
 /* ==============================
    DEMO BANNER
    ============================== */
 .demo-banner {
-    background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
-    border-left: 4px solid #ff9800;
-    color: #856404;
+    background: linear-gradient(135deg, var(--wanted-paper) 0%, var(--straw-hat-yellow) 100%);
+    border-left: 5px solid var(--luffy-red);
+    color: var(--pirate-black);
     padding: 1rem 1.5rem;
-    border-radius: 8px;
+    border-radius: 12px;
     margin-bottom: 2rem;
     display: flex;
     align-items: center;
     gap: 1rem;
     box-shadow: var(--shadow);
+    border: 2px solid var(--treasure-gold);
 }
 
 .demo-banner i {
     font-size: 1.5rem;
-    color: #ff9800;
+    color: var(--luffy-red);
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
 
 .demo-banner strong {
     display: block;
     margin-bottom: 0.25rem;
+    font-size: 1.1 - One Piece Theme
+   ============================== */
+.welcome-section {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-heavy);
+    border: 3px solid var(--treasure-gold);
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--luffy-red), var(--sunset-orange), var(--straw-hat-yellow), var(--ocean-blue));
+}
+
+.icon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.feature-card {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border-radius: 15px;
+    background: linear-gradient(135deg, var(--ocean-blue) 0%, var(--ocean-deep) 100%);
+    color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid var(--treasure-gold);
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '★';
+    position: absolute;
+    font-size: 8rem;
+    opacity: 0.1;
+    top: -20px;
+    right: -20p - One Piece Style
+   ============================== */
+.form-section {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.95) 100%);
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-heavy);
+    border: 3px solid var(--ocean-blue);
+    position: relative;
+}
+
+.form-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--ocean-blue), var(--ocean-deep), var(--luffy-red));
+}
+
+.form-section h2 {
+    color: var(--luffy-red);
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: 900;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-section h2 i {
+    color: var(--sunset-orange);
+    margin-right: 0.5rem;
+    animation: bounce 2s infinite
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.feature-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    font-weight: 800;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.feature-card p {
+    opacity: 0.95;
+    font-size: 1rem;
+    font-weight: 5005rem;
     font-size: 1.1rem;
 }
 
@@ -132,55 +260,62 @@ body {
     box-shadow: var(--shadow-hover);
 }
 
-.feature-card i {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    opacity: 0.9;
-}
-
-.feature-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
-}
-
-.feature-card p {
-    opacity: 0.9;
-    font-size: 0.95rem;
-}
-
-/* ==============================
-   FORM SECTION
-   ============================== */
-.form-section {
-    background: var(--card-bg);
-    border-radius: 15px;
-    padding: 2.5rem;
-    margin-bottom: 2rem;
-    box-shadow: var(--shadow);
-}
-
-.form-section h2 {
-    color: var(--text-primary);
-    margin-bottom: 1.5rem;
-    font-size: 1.8rem;
-}
-
-.form-section h2 i {
-    color: var(--primary-color);
-    margin-right: 0.5rem;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
+.feature-card .2rem;
+    border: 3px dashed var(--ocean-blue);
+    border-radius: 12px;
+    background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
+    cursor: pointer;
+    transition: all 0.3s ease;
     font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 0.5rem;
-    font-size: 1.05rem;
 }
+
+input[type="file"]:hover {
+    border-color: var(--luffy-red);
+    background: linear-gradient(135deg, #fff5f5 0%, #ffe6e6 100%);
+    transform: scale(1.01);
+    box-shadow: 0 4px 15px rgba(220, 20, 60, 0.2);
+}
+
+.file-info {
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem;
+    background: linear-gradient(135deg, var(--wanted-paper) 0%, #fff 100%);
+    border-radius: 8px;
+    border: 2px solid var(--treasure-gold);
+}
+
+.file-name {
+    font-weight: 700;
+    color: var(--ocean-deep);
+}
+
+.file-size {
+    color: var(--luffy-red);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Textarea */
+textarea {
+    width: 100%;
+    padding: 1.2rem;
+    border: 3px solid var(--ocean-blue);
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 1rem;
+    resize: vertical;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #f0f8ff 0%, #fff 100%);
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--luffy-red);
+    box-shadow: 0 0 0 4px rgba(220, 20, 60, 0.1);
+    background: white
 
 .form-group label i {
     margin-right: 0.5rem;
@@ -191,88 +326,136 @@ body {
 .file-input-wrapper {
     position: relative;
 }
-
-input[type="file"] {
-    width: 100%;
-    padding: 1rem;
-    border: 2px dashed var(--border-color);
-    border-radius: 8px;
-    background: var(--light-bg);
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-input[type="file"]:hover {
-    border-color: var(--primary-color);
-    background: #e3f2fd;
-}
-
-.file-info {
-    margin-top: 0.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem;
-    background: var(--light-bg);
-    border-radius: 5px;
-}
-
-.file-name {
-    font-weight: 500;
-    color: var(--text-primary);
-}
-
-.file-size {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-}
-
-/* Textarea */
-textarea {
-    width: 100%;
-    padding: 1rem;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
-    font-family: inherit;
-    font-size: 1rem;
-    resize: vertical;
-    transition: border-color 0.3s ease;
-}
-
-textarea:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
-}
-
-.char-count {
-    text-align: right;
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-}
-
-.help-text {
-    display: block;
-    margin-top: 0.5rem;
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-}
-
-/* ==============================
-   BUTTONS
+ - One Piece Adventure Style
    ============================== */
 .btn-primary, .btn-secondary {
-    padding: 1rem 2rem;
+    padding: 1.2rem 2.5rem;
     border: none;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    font-weight: 600;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: 800;
     cursor: pointer;
     transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-primary:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-primary {
+    width: 100%;
+    background: linear-gradient(135deg, var(--luffy-red) 0%, var(--sunset-orange) 100%);
+    color: white;
+    box-shadow: 0 6px 20px rgba(220, 20, 60, 0.4);
+    border: 3px solid var(--treasure-gold);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(220, 20, 60, 0.6);
+}
+
+.btn-primary:active {
+    transform: translateY(0) scale(0.98);
+}
+ - Adventure Loading
+   ============================== */
+.loading-spinner {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.95) 100%);
+    border-radius: 20px;
+    padding: 3rem;
+    text-align: center;
+    box-shadow: var(--shadow-heavy);
+    border: 3px solid var(--treasure-gold);
+}
+
+.spinner {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    border: 6px solid rgba(220, 20, 60, 0.2);
+    border-top-color: var(--luffy-red);
+    border-right-color: var(--sunset-orange);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    box-shadow: 0 0 20px rgba(220, 20, 60, 0.3);
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-spinner p {
+    font-size: 1.3rem;
+    color: var(--luffy-red);
+    margin-bottom: 0.5rem;
+    font-weight: 800;
+}
+
+.loading-spinner small {
+    color: var(--o - Treasure Found!
+   ============================== */
+#result {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.95) 100%);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: var(--shadow-heavy);
+    animation: slideInUp 0.5s ease;
+    border: 3px solid var(--treasure-gold);
+    position: relative;
+}
+
+#result::before {
+    content: '🏴‍☠️';
+    position: absolute;
+    font-size: 4rem;
+    top: 1rem;
+    right: 2rem;
+    opacity: 0.2;
+    animation: float 4s ease-in-out infinite;
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-bottom: 3px solid var(--treasure-gold);
+    padding-bottom: 1rem;
+}
+
+.result-header h2 {
+    color: var(--luffy-red);
+    font-size: 2rem;
+    font-weight: 900;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.result-header h2 i {
+    color: var(--sunset-orange
 }
 
 .btn-primary {
@@ -303,39 +486,44 @@ textarea:focus {
 
 /* ==============================
    LOADING STATE
+   ==== - Adventure Navigation
    ============================== */
-.loading-spinner {
-    background: var(--card-bg);
-    border-radius: 15px;
-    padding: 3rem;
-    text-align: center;
-    box-shadow: var(--shadow);
+.tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 3px solid var(--ocean-blue);
+    flex-wrap: wrap;
 }
 
-.spinner {
-    width: 60px;
-    height: 60px;
-    margin: 0 auto 1.5rem;
-    border: 5px solid var(--light-bg);
-    border-top-color: var(--primary-color);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+.tab-btn {
+    padding: 1rem 1.8rem;
+    border: none;
+    background: transparent;
+    color: var(--ocean-deep);
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    border-bottom: 4px solid transparent;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-@keyframes spin {
-    to { transform: rotate(360deg); }
+.tab-btn:hover {
+    color: var(--luffy-red);
+    background: linear-gradient(135deg, rgba(220, 20, 60, 0.1) 0%, rgba(255, 107, 53, 0.1) 100%);
+    transform: translateY(-2px);
 }
 
-.loading-spinner p {
-    font-size: 1.2rem;
-    color: var(--text-primary);
-    margin-bottom: 0.5rem;
-}
-
-.loading-spinner small {
-    color: var(--text-secondary);
-}
-
+.tab-btn.active {
+    color: var(--luffy-red);
+    border-bottom-color: var(--luffy-red);
+    background: linear-gradient(135deg, rgba(220, 20, 60, 0.1) 0%, rgba(255, 107, 53, 0.1) 100%);
+    box-shadow: 0 -2px 10px rgba(220, 20, 60, 0.2
 /* ==============================
    RESULTS SECTION
    ============================== */
@@ -343,72 +531,84 @@ textarea:focus {
     background: var(--card-bg);
     border-radius: 15px;
     padding: 2rem;
-    box-shadow: var(--shadow);
-    animation: slideInUp 0.5s ease;
-}
-
-.result-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.result-header h2 {
-    color: var(--text-primary);
-    font-size: 1.8rem;
-}
-
-.result-header h2 i {
-    color: var(--primary-color);
-    margin-right: 0.5rem;
-}
-
-.result-actions {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-/* ==============================
-   TABS
+    box-shadow: - Treasure Chest Style
    ============================== */
-.tabs {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-    border-bottom: 2px solid var(--border-color);
-    flex-wrap: wrap;
+.result-card {
+    background: linear-gradient(135deg, #f0f8ff 0%, #fff 100%);
+    border-radius: 12px;
+    padding: 1.8rem;
+    margin-bottom: 1rem;
+    border: 2px solid var(--ocean-blue);
+    box-shadow: 0 4px 15px rgba(30, 144, 255, 0.1);
 }
 
-.tab-btn {
-    padding: 1rem 1.5rem;
-    border: none;
-    background: transparent;
-    color: var(--text-secondary);
-    font-size: 1rem;
+.result-card.highlight {
+    background: linear-gradient(135deg, var(--wanted-paper) 0%, #fff5e6 100%);
+    border-left: 6px solid var(--luffy-red);
+    border: 3px solid var(--treasure-gold);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+}
+
+.result-card pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-dark);
+    margin: 0;
+    font-weight: 500;
+}
+
+.timestamp {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--treasure-gold);
+    color: var(--ocean-deep);
+    font-size: 0.95rem;
     font-weight: 600;
-    cursor: pointer;
-    border-bottom: 3px solid transparent;
-    transition: all 0.3s ease;
-    display: inline-flex;
+}
+ - Danger Zone
+   ============================== */
+.error-alert {
+    background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+    border-left: 6px solid var(--luffy-red);
+    color: #c62828;
+    padding: 1.2rem 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
+    animation: shake 0.5s ease;
+    position: relative;
+    border: 2px solid #ef5350;
+    font-weight: 600;
 }
 
-.tab-btn:hover {
-    color: var(--primary-color);
-    background: var(--light-bg);
+.error-alert i {
+    font-size: 1.8rem;
+    animation: pulse 1s infinite;
 }
 
-.tab-btn.active {
-    color: var(--primary-color);
-    border-bottom-color: var(--primary-color);
+.close-btn {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #c62828;
+    font-size: 1.3rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    font-weight: bold;
 }
 
-.tab-content {
+.close-btn:hover {
+    opacity: 0.7;
+    transform: translateY(-50%) scale(1.1)
     display: none;
     animation: fadeIn 0.4s ease;
 }
@@ -422,22 +622,49 @@ textarea:focus {
    ============================== */
 .result-card {
     background: var(--light-bg);
-    border-radius: 10px;
-    padding: 1.5rem;
-    margin-bottom: 1rem;
+    borde - Pirate Crew
+   ============================== */
+.footer {
+    background: linear-gradient(135deg, var(--pirate-black) 0%, var(--ocean-deep) 100%);
+    color: white;
+    text-align: center;
+    padding: 2.5rem 1rem;
+    margin-top: 3rem;
+    border-top: 5px solid var(--treasure-gold);
+    position: relative;
 }
 
-.result-card.highlight {
-    background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
-    border-left: 4px solid var(--primary-color);
+.footer::before {
+    content: '⚓';
+    position: absolute;
+    font-size: 8rem;
+    opacity: 0.1;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
 }
 
-.result-card pre {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 1rem;
-    line-height: 1.6;
+.footer::after {
+    content: '⚓';
+    position: absolute;
+    font-size: 8rem;
+    opacity: 0.1;
+    top: 50%;
+    right: 10%;
+    transform: translateY(-50%) scaleX(-1);
+}
+
+.footer p {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+}
+
+.footer small {
+    opacity: 0.9;
+    position: relative;
+    z-index: 1 1.6;
     color: var(--text-primary);
     margin: 0;
 }
@@ -472,44 +699,401 @@ textarea:focus {
     position: relative;
 }
 
-.error-alert i {
-    font-size: 1.5rem;
-}
-
-.close-btn {
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: #c62828;
-    font-size: 1.2rem;
-    cursor: pointer;
-    padding: 0.5rem;
-}
-
-.close-btn:hover {
-    opacity: 0.7;
-}
-
 /* ==============================
-   FOOTER
+   FOOTER - Pirate Crew
    ============================== */
 .footer {
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    background: linear-gradient(135deg, var(--pirate-black) 0%, var(--ocean-deep) 100%);
     color: white;
     text-align: center;
-    padding: 2rem 1rem;
+    padding: 2.5rem 1rem;
     margin-top: 3rem;
+    border-top: 5px solid var(--treasure-gold);\n    position: relative;
+}
+
+.footer::before {
+    content: '⚓';
+    position: absolute;
+    font-size: 8rem;
+    opacity: 0.1;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+}
+
+.footer::after {
+    content: '⚓';
+    position: absolute;
+    font-size: 8rem;
+    opacity: 0.1;
+    top: 50%;
+    right: 10%;
+    transform: translateY(-50%) scaleX(-1);
 }
 
 .footer p {
     margin-bottom: 0.5rem;
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
 }
 
 .footer small {
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+}
+
+.crew-credits {
+    text-align: center;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 2px solid rgba(255, 255, 255, 0.3);
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+/* ==============================
+   ENHANCED ONE PIECE ELEMENTS
+   ============================== */
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.straw-hat-icon {
+    font-size: 4rem;
+    animation: bounce 3s ease-in-out infinite;
+}
+
+.character-badges {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.badge {
+    padding: 0.5rem 1.2rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.badge:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.section-header h2 {
+    font-size: 2.2rem;
+    color: var(--luffy-red);
+    margin-bottom: 0.75rem;
+    font-weight: 900;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.section-header h2 i {
+    color: var(--treasure-gold);
+    margin-right: 0.75rem;
+}
+
+.section-subtitle {
+    font-size: 1.2rem;
+    color: var(--ocean-deep);
+    font-weight: 600;
+}
+
+.card-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.card-icon-wrapper i {
+    font-size: 3rem !important;
+    margin: 0 !important;
+}
+
+.card-footer {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    font-weight: 600;
+    padding-top: 1rem;
+    border-top: 2px solid rgba(255, 255, 255, 0.3);
+    margin-top: 0.5rem;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form-header h2 {
+    color: var(--luffy-red);
+    margin-bottom: 0.75rem;
+    font-size: 2rem;
+    font-weight: 900;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-description {
+    font-size: 1.1rem;
+    color: var(--ocean-deep);
+    font-weight: 600;
+}
+
+.label-hint {
+    font-size: 0.85rem;
+    color: var(--luffy-red);
+    font-weight: 600;
+    opacity: 0.9;
+}
+
+.file-upload-area {
+    position: relative;
+    border: 3px dashed var(--ocean-blue);
+    border-radius: 15px;
+    padding: 2.5rem;
+    text-align: center;
+    background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.file-upload-area:hover {
+    border-color: var(--luffy-red);
+    background: linear-gradient(135deg, #fff5f5 0%, #ffe6e6 100%);
+    transform: scale(1.01);
+    box-shadow: 0 4px 15px rgba(220, 20, 60, 0.2);
+}
+
+.upload-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.upload-text {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--ocean-deep);
+    margin-bottom: 0.5rem;
+}
+
+.upload-hint {
+    font-size: 0.95rem;
+    color: var(--luffy-red);
+    font-weight: 600;
+}
+
+.file-upload-area input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;\n    opacity: 0;
+    cursor: pointer;
+}
+
+.textarea-wrapper {
+    position: relative;
+}
+
+.textarea-wrapper textarea {
+    width: 100%;
+    padding: 1.2rem;
+    border: 3px solid var(--ocean-blue);
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 1rem;
+    resize: vertical;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #f0f8ff 0%, #fff 100%);
+    min-height: 200px;
+}
+
+.textarea-wrapper textarea:focus {
+    outline: none;
+    border-color: var(--luffy-red);
+    box-shadow: 0 0 0 4px rgba(220, 20, 60, 0.1);
+    background: white;
+}
+
+.textarea-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+    background: linear-gradient(135deg, var(--wanted-paper) 0%, #fff 100%);
+    border-radius: 8px;
+    border: 2px solid var(--treasure-gold);
+}
+
+.char-minimum {
+    color: var(--luffy-red);
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+.textarea-status {
+    color: var(--ocean-deep);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.textarea-status i {
+    margin-right: 0.5rem;
+    color: var(--ocean-blue);
+}
+
+.loading-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.spinner-wrapper {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 2rem;
+}
+
+.spinner-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    animation: pulse 2s infinite;
+}
+
+.loading-title {
+    font-size: 1.8rem;
+    color: var(--luffy-red);
+    margin-bottom: 0.75rem;
+    font-weight: 900;
+}
+
+.loading-message {
+    font-size: 1.1rem;
+    color: var(--ocean-deep);
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+.loading-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.step {
+    padding: 1rem 0.75rem;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
+    border: 2px solid var(--ocean-blue);
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--ocean-deep);
+}
+
+.step.active {
+    opacity: 1;
+    background: linear-gradient(135deg, var(--wanted-paper) 0%, #fff5e6 100%);
+    border-color: var(--treasure-gold);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    transform: scale(1.05);
+}
+
+.step-icon {
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.result-title-section h2 {
+    color: var(--luffy-red);
+    font-size: 2rem;
+    font-weight: 900;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0.5rem;
+}
+
+.result-title-section h2 i {
+    color: var(--sunset-orange);
+    margin-right: 0.5rem;
+}
+
+.result-subtitle {
+    color: var(--ocean-deep);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.result-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.tab-btn .tab-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+}
+
+.tab-label {
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.tab-description {
+    font-size: 0.85rem;
     opacity: 0.8;
+    font-weight: 500;
+}
+
+.btn-icon {
+    font-size: 1.3rem;
+    margin-right: 0.5rem;
+}
+
+.btn-text {
+    font-size: 1.1rem;
+}
+
+.btn-arrow {
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.btn-primary:hover .btn-arrow {
+    transform: translateX(5px);
 }
 
 /* ==============================

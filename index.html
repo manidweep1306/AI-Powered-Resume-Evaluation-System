@@ -3,16 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GenAI ATS Resume Analyzer - Professional Edition</title>
+    <title>Pirate's Resume Navigator | ATS Analysis System</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <div class="header-content">
-            <h1><i class="fas fa-brain"></i> GenAI ATS Resume Analyzer</h1>
-            <p class="subtitle">Powered by Google Gemini AI</p>
+            <div class="logo-container">
+                <div class="straw-hat-icon">🏴‍☠️</div>
+                <h1><i class="fas fa-compass"></i>Pirate's Resume Navigator</h1>
+            </div>
+            <p class="subtitle">"I'm gonna be the King of Resumes!" - Powered by Gemini AI</p>
+            <div class="character-badges">
+                <span class="badge" title="Luffy - Determination">🏴‍☠️ Courage</span>
+                <span class="badge" title="Zoro - Precision">⚔️ Precision</span>
+                <span class="badge" title="Nami - Navigation">🧭 Strategy</span>
+                <span class="badge" title="Sanji - Excellence">👨‍🍳 Excellence</span>
+            </div>
         </div>
     </header>
 
@@ -28,82 +40,134 @@
 
         <!-- Welcome Section -->
         <div class="welcome-section">
+            <div class="section-header">
+                <h2><i class="fas fa-treasure-chest"></i> Your Journey to Career Success</h2>
+                <p class="section-subtitle">Navigate the Grand Line of Career Opportunities with AI Precision</p>
+            </div>
             <div class="icon-grid">
                 <div class="feature-card">
-                    <i class="fas fa-file-pdf"></i>
-                    <h3>Upload Resume</h3>
-                    <p>PDF format supported</p>
+                    <div class="card-icon-wrapper">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI-Powered Analysis</h3>
+                    <p>Advanced Gemini AI scans your resume with Luffy's determination</p>
+                    <div class="card-footer">💪 Determination & Courage</div>
                 </div>
                 <div class="feature-card">
-                    <i class="fas fa-briefcase"></i>
-                    <h3>Job Description</h3>
-                    <p>Paste the job posting</p>
+                    <div class="card-icon-wrapper">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Precision Matching</h3>
+                    <p>Accurate compatibility scores with Zoro's three-sword precision</p>
+                    <div class="card-footer">⚔️ Accuracy & Focus</div>
                 </div>
                 <div class="feature-card">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>Get Analysis</h3>
-                    <p>AI-powered insights</p>
+                    <div class="card-icon-wrapper">
+                        <i class="fas fa-compass"></i>
+                    </div>
+                    <h3>Strategic Navigation</h3>
+                    <p>Smart recommendations guided by Nami's navigational genius</p>
+                    <div class="card-footer">🧭 Strategy & Planning</div>
+                </div>
+                <div class="feature-card">
+                    <div class="card-icon-wrapper">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Excellence Driven</h3>
+                    <p>Professional insights crafted with Sanji's dedication to perfection</p>
+                    <div class="card-footer">👨‍🍳 Excellence & Quality</div>
                 </div>
             </div>
         </div>
 
         <!-- Main Form -->
         <div class="form-section">
-            <h2><i class="fas fa-upload"></i> Analyze Your Resume</h2>
+            <div class="form-header">
+                <h2><i class="fas fa-scroll"></i> Submit Your Wanted Poster</h2>
+                <p class="form-description">Upload your resume and job description to discover your perfect career treasure</p>
+            </div>
             
             <form id="atsForm">
                 <!-- File Upload -->
                 <div class="form-group">
                     <label for="resume">
-                        <i class="fas fa-file-upload"></i> Upload Resume (PDF)
+                        <i class="fas fa-file-pdf"></i> Your Resume Document
+                        <span class="label-hint">Max 10MB • PDF Format</span>
                     </label>
-                    <div class="file-input-wrapper">
+                    <div class="file-upload-area" id="fileUploadArea">
+                        <div class="upload-icon">📜</div>
                         <input type="file" id="resume" accept=".pdf" required>
-                        <div class="file-info">
-                            <span class="file-name">No file selected</span>
-                            <span class="file-size"></span>
-                        </div>
+                        <p class="upload-text">Click to select or drag & drop your resume</p>
+                        <p class="upload-hint">Your adventure document awaits analysis</p>
                     </div>
-                    <small class="help-text">Maximum file size: 10MB</small>
+                    <div class="file-info" id="fileInfo" style="display: none;">
+                        <i class="fas fa-check-circle"></i>
+                        <span class="file-name" id="fileName">No file selected</span>
+                        <span class="file-size" id="fileSize"></span>
+                    </div>
                 </div>
 
                 <!-- Job Description -->
                 <div class="form-group">
                     <label for="jobDescription">
-                        <i class="fas fa-clipboard-list"></i> Job Description
+                        <i class="fas fa-map-marked-alt"></i> Job Description / Target Position
+                        <span class="label-hint">Describe your dream destination</span>
                     </label>
-                    <textarea id="jobDescription" rows="8" placeholder="Paste the complete job description here (minimum 50 characters)..." required></textarea>
-                    <div class="char-count">
-                        <span id="charCount">0</span> characters
+                    <div class="textarea-wrapper">
+                        <textarea id="jobDescription" rows="10" placeholder="Paste the complete job description here...&#10;&#10;Example:&#10;- Required skills and qualifications&#10;- Job responsibilities&#10;- Experience requirements&#10;- Technical skills needed" required></textarea>
+                        <div class="textarea-footer">
+                            <div class="char-count">
+                                <i class="fas fa-keyboard"></i>
+                                <span id="charCount">0</span> characters
+                                <span class="char-minimum">(minimum 50)</span>
+                            </div>
+                            <div class="textarea-status" id="textareaStatus">
+                                <i class="fas fa-info-circle"></i> Start typing...
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Submit Button -->
                 <button type="submit" class="btn-primary">
-                    <i class="fas fa-search"></i> Analyze Resume
+                    <span class="btn-icon">🎯</span>
+                    <span class="btn-text">Begin Analysis Journey</span>
+                    <i class="fas fa-arrow-right btn-arrow"></i>
                 </button>
             </form>
         </div>
 
         <!-- Loading State -->
-        <div id="loading" class="hidden">
-            <div class="loading-spinner">
-                <div class="spinner"></div>
-                <p><i class="fas fa-robot"></i> Analyzing with Gemini AI...</p>
-                <small>This may take a few moments</small>
+        <div id="loading" class="loading-spinner hidden">
+            <div class="loading-container">
+                <div class="spinner-wrapper">
+                    <div class="spinner"></div>
+                    <div class="spinner-center">🏴‍☠️</div>
+                </div>
+                <h3 class="loading-title">Navigating the Grand Line...</h3>
+                <p class="loading-message">Our AI crew is analyzing your resume with precision</p>
+                <div class="loading-steps">
+                    <div class="step active" data-step="1"><span class="step-icon">⚓</span> Extracting Data</div>
+                    <div class="step" data-step="2"><span class="step-icon">🧭</span> Analyzing Skills</div>
+                    <div class="step" data-step="3"><span class="step-icon">💎</span> Calculating Match</div>
+                    <div class="step" data-step="4"><span class="step-icon">📊</span> Generating Report</div>
+                </div>
             </div>
         </div>
 
         <!-- Results Section -->
         <div id="result" class="hidden">
             <div class="result-header">
-                <h2><i class="fas fa-chart-bar"></i> Analysis Results</h2>
+                <div class="result-title-section">
+                    <h2><i class="fas fa-treasure-chest"></i> Your Career Treasure Map</h2>
+                    <p class="result-subtitle">Analysis completed with precision and excellence</p>
+                </div>
                 <div class="result-actions">
                     <button id="downloadBtn" class="btn-secondary">
                         <i class="fas fa-download"></i> Download Report
                     </button>
                     <button id="newAnalysisBtn" class="btn-secondary">
-                        <i class="fas fa-plus"></i> New Analysis
+                        <i class="fas fa-redo"></i> New Analysis
                     </button>
                 </div>
             </div>
@@ -111,13 +175,19 @@
             <!-- Tabs -->
             <div class="tabs">
                 <button class="tab-btn active" data-tab="ats">
-                    <i class="fas fa-star"></i> ATS Evaluation
+                    <i class="fas fa-bullseye"></i>
+                    <span class="tab-label">ATS Score</span>
+                    <span class="tab-description">Match Percentage</span>
                 </button>
                 <button class="tab-btn" data-tab="resume">
-                    <i class="fas fa-user"></i> Resume Analysis
+                    <i class="fas fa-user-circle"></i>
+                    <span class="tab-label">Resume Analysis</span>
+                    <span class="tab-description">Detailed Review</span>
                 </button>
                 <button class="tab-btn" data-tab="job">
-                    <i class="fas fa-briefcase"></i> Job Requirements
+                    <i class="fas fa-map-signs"></i>
+                    <span class="tab-label">Job Insights</span>
+                    <span class="tab-description">Requirements</span>
                 </button>
             </div>
 
@@ -158,8 +228,11 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <p>© 2026 GenAI ATS Resume Analyzer | Powered by Google Gemini AI</p>
-        <p><small>Professional Resume Analysis Tool</small></p>
+        <p>&copy; 2026 Pirate's Resume Navigator | Powered by Google Gemini AI</p>
+        <small>"In this world, wherever there is light - there are also shadows. Resume analysis brings clarity to your career journey."</small>
+        <div class="crew-credits">
+            <span>🏴‍☠️ Built with the spirit of adventure and excellence</span>
+        </div>
     </footer>
 
     <script src="script.js"></script>
