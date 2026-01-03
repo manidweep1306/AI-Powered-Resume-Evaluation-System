@@ -41,12 +41,6 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # ==============================
-# HELPER FUNCTIONS
-# ==============================
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-# ==============================
 # PDF TEXT EXTRACTION
 # ==============================
 def extract_text_from_pdf(pdf_path):
@@ -116,21 +110,50 @@ Resume:
 
 
 def parse_job_description(jd_text):
+    if DEMO_MODE:
+        return """
+**DEMO MODE - Sample Job Description Analysis**
+
+Required Skills:
+• Python, JavaScript
+• Flask, React
+• MySQL, MongoDB
+• Git, Docker
+• AWS/Cloud platforms
+• Problem-solving skills
+
+Responsibilities:
+• Develop and maintain web applications
+• Write clean, efficient code
+• Collaborate with cross-functional teams
+• Participate in code reviews
+• Deploy and monitor applications
+
+Qualifications:
+• Bachelor's degree in Computer Science or related field
+• 3+ years of software development experience
+• Strong understanding of web technologies
+• Experience with Agile methodologies
+"""
+    
     prompt = f"""
+You are a job description parser.
+
 Extract:
 - Required skills
 - Responsibilities
-- Prtry:
-        return model.generate_content(prompt).text
-    except Exception as e:
-        if "429" in str(e) or "quota" in str(e).lower():
-            raise Exception("API quota exceeded. Please check your Gemini API plan or wait for quota reset. Visit: https://ai.dev/usage")
-        raise
+- Qualifications
+- Preferred qualifications
 
 Job Description:
 {jd_text}
 """
-    return model.generate_content(prompt).text
+    try:
+        return model.generate_content(prompt).text
+    except Exception as e:
+        if "429" in str(e) or "quota" in str(e).lower():
+            raise Exception("⚠️ API Quota Exceeded!\n\nYour Gemini API free tier limit has been reached.\n\nSolutions:\n1. Get a new API key from https://aistudio.google.com/apikey\n2. Wait for quota reset (usually 24 hours)\n3. Upgrade to paid plan\n4. Enable DEMO_MODE=true in .env file for testing")
+        raise
 
 
 def ats_match(resume, jd):

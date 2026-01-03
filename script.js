@@ -154,13 +154,66 @@ elements.form.addEventListener("submit", async function(e) {
 });
 
 // ==============================
+// MARKDOWN TO HTML CONVERTER
+// ==============================
+function markdownToHtml(text) {
+    if (!text) return '';
+    
+    // Convert headers
+    text = text.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+    text = text.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+    text = text.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+    
+    // Convert bold
+    text = text.replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>');
+    text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    text = text.replace(/\*(.+?)\*/g, '<em>$1</em>');
+    
+    // Convert bullet lists
+    text = text.replace(/^\*   (.+)$/gim, '<li>$1</li>');
+    text = text.replace(/^\* (.+)$/gim, '<li>$1</li>');
+    text = text.replace(/^• (.+)$/gim, '<li>$1</li>');
+    text = text.replace(/^- (.+)$/gim, '<li>$1</li>');
+    
+    // Wrap consecutive list items in ul tags
+    text = text.replace(/(<li>.*<\/li>\n?)+/g, function(match) {
+        return '<ul>' + match + '</ul>';
+    });
+    
+    // Convert horizontal rules
+    text = text.replace(/^---$/gim, '<hr>');
+    
+    // Convert tables (basic support)
+    text = text.replace(/\|(.+)\|/g, function(match) {
+        const cells = match.split('|').filter(cell => cell.trim());
+        return '<tr>' + cells.map(cell => '<td>' + cell.trim() + '</td>').join('') + '</tr>';
+    });
+    text = text.replace(/(<tr>.*<\/tr>\n?)+/g, function(match) {
+        return '<table>' + match + '</table>';
+    });
+    
+    // Convert line breaks to paragraphs
+    text = text.split('\n\n').map(para => {
+        if (!para.startsWith('<') && para.trim() !== '') {
+            return '<p>' + para + '</p>';
+        }
+        return para;
+    }).join('\n');
+    
+    // Convert single line breaks to <br>
+    text = text.replace(/\n/g, '<br>');
+    
+    return text;
+}
+
+// ==============================
 // DISPLAY RESULTS
 // ==============================
 function displayResults(data) {
-    // Populate result fields
-    document.getElementById("parsedResume").innerText = data.parsed_resume;
-    document.getElementById("parsedJD").innerText = data.parsed_job_description;
-    document.getElementById("atsResult").innerText = data.ats_result;
+    // Populate result fields with markdown rendering
+    document.getElementById("parsedResume").innerHTML = markdownToHtml(data.parsed_resume);
+    document.getElementById("parsedJD").innerHTML = markdownToHtml(data.parsed_job_description);
+    document.getElementById("atsResult").innerHTML = markdownToHtml(data.ats_result);
     
     // Format and display timestamp
     if (data.timestamp) {
